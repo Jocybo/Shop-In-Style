@@ -8,6 +8,8 @@ import '../node_modules/font-awesome/css/font-awesome.css'
 
 function App() {
 
+  //=================== Product Details ==============================================//
+
   let products = [
     {
       id: 1,
@@ -88,20 +90,20 @@ function App() {
     },
   ]
 
-  // using State for handling caritems and total : 
+  //============================== using State for handling caritems and total ============================= : 
 
   const [cartitems, setCartitems] = useState([])
   const [total, setTotal] = useState(0)
 
 
-  // Funtion for adding a item to the Cart :
+  //============================= Funtion for adding a item to the Cart ================================== :
 
   let handleCart = (item) => {
     setCartitems([...cartitems, item]);
     setTotal(total + item.price);
   };
 
-  // Function for Remove the item From Cart :
+  //================================= Function for Remove the item From Cart============================== :
 
   let handleRemoveCart = (item) => {
     let itemIndex = cartitems.findIndex((obj) => item.id === obj.id);
@@ -135,6 +137,9 @@ function App() {
                 <i class="bi-cart-fill me-1"></i>
                 Cart
                 <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+
+                {/*====================Using Map to List the Product Details==================================== */}
+
                 <ol class="list-group list-group-numbered">
                   {
                     cartitems.map((item) => {
@@ -149,10 +154,17 @@ function App() {
           </div>
         </div>
       </nav>
+      {/*======================== Header Component  ==========================*/}
+  
       <Head />
+
+      {/*=============================== Section ==================== */}
       <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
           <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            {/*================== Map the Products to the Card ======================= */}
+            
             {
               products.map((product) => {
                 return <Card data={product} cartItem={cartitems}handleCart={handleCart} />
